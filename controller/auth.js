@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
+<<<<<<< HEAD
 exports.register = async (req, res) => {
     try {
         const { name, email, password, mobileNumber, role } = req.body;         
@@ -33,6 +34,8 @@ exports.register = async (req, res) => {
 
 
 
+=======
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -67,10 +70,15 @@ exports.login = async (req, res) => {
             token
         });
     } catch (error) {
+<<<<<<< HEAD
         console.error(error);
         res.status(500).json({ 
             message: 'Server error',
             error: error.message
+=======
+        res.status(500).json({ 
+            message: 'Server error' 
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
         });
     }
 };

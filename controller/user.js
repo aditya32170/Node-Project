@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const User = require('../models/user');
+=======
+const user = require('../models/user');
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
 const bcrypt = require('bcryptjs');
 
 // Create a new user
@@ -8,7 +12,11 @@ exports.createUser = async (req, res) => {
 
         const hpass = await bcrypt.hash(password, 10);
 
+<<<<<<< HEAD
         const newUser = await User.create({
+=======
+        const newUser = await user.create({
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
             name,
             email,
             password: hpass,
@@ -21,10 +29,16 @@ exports.createUser = async (req, res) => {
             data: newUser,
         });
     } catch (err) {
+<<<<<<< HEAD
         console.error(err);
         return res.status(500).json({   
             message: "Server error",
             error: err.message
+=======
+        console.error(err.message);
+        return res.status(500).json({   
+            message: "Server error",
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
         });
     }
 };
@@ -32,13 +46,18 @@ exports.createUser = async (req, res) => {
 // Get all users
 exports.getAllUsers = async (req,res) => {
     try{
+<<<<<<< HEAD
         const users = await User.find().select('-password');
+=======
+        const users = await user.find().select('-password');
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
 
         return res.status(200).json({
             message: "Users fetched successfully",
             data: users,
         });
     }catch(error){
+<<<<<<< HEAD
         console.error(error);
         return res.status(500).json({
             message: "Server error",
@@ -67,6 +86,11 @@ exports.getMe = async (req, res) => {
         return res.status(500).json({
             message: "Server error",
             error: error.message
+=======
+        console.error(error.message);
+        return res.status(500).json({
+            message: "Server error",
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
         });
     }
 };
@@ -74,7 +98,11 @@ exports.getMe = async (req, res) => {
 // Get user by ID
 exports.getUserById = async (req,res) => {
     try{
+<<<<<<< HEAD
         const userId = await User.findById(req.params.id).select('-password');
+=======
+        const userId = await user.findById(req.params.id).select('-password');
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
 
         if(!userId){
             return res.status(404).json({
@@ -95,6 +123,7 @@ exports.getUserById = async (req,res) => {
 // Update user by ID
 exports.updateUser = async (req, res) => {
     try {
+<<<<<<< HEAD
         const updates = { ...req.body };
         if (req.user.role !== 'admin') {
             delete updates.role;
@@ -107,6 +136,11 @@ exports.updateUser = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
             updates,
+=======
+        const updatedUser = await user.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
             {
                 new: true,
                 runValidators: true,
@@ -124,10 +158,15 @@ exports.updateUser = async (req, res) => {
             data: updatedUser,
         });
     } catch (err) {
+<<<<<<< HEAD
         console.error(err);
         return res.status(500).json({
             message: "Server error",
             error: err.message
+=======
+        return res.status(500).json({
+            message: "Server error",
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
         });
     }
 };
@@ -135,7 +174,11 @@ exports.updateUser = async (req, res) => {
 // Delete user by ID
 exports.deleteUser = async (req, res) => {
     try {
+<<<<<<< HEAD
         const deletedUser = await User.findByIdAndDelete(req.params.id);
+=======
+        const deletedUser = await user.findByIdAndDelete(req.params.id);
+>>>>>>> b946b757fec57116b51994e33f23f0f5789af10d
 
         if (!deletedUser) {
             return res.status(404).json({
